@@ -1,0 +1,19 @@
+# Auto-detect text files and perform LF normalization
+* text=auto
+
+# Ensure all shell scripts use LF
+*.sh text eol=lf
+
+# Handle binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+
+# Treat markdown files as text (for linguist stats)
+*.md linguist-documentation
+
+# Normalize JSON files (optional)
+*.json text eol=lf
