@@ -15,7 +15,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-muted-foreground mb-4">
-              India's first smart luggage brand offering innovative products with cutting-edge technology for the modern
+              India&apos;s first smart luggage brand offering innovative products with cutting-edge technology for the modern
               traveler.
             </p>
             <div className="flex space-x-4">
