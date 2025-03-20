@@ -70,37 +70,57 @@
 //     </main>
 //   )
 // }
-
 import { notFound } from "next/navigation"
 import ProductDetails from "@/components/product-details"
 import RelatedProducts from "@/components/related-products"
 
-type Params = { params: { id: string } }
+// Define the expected type for Next.js dynamic route parameters
+interface Params {
+  params: {
+    id: string
+  }
+}
+
+// Define the Product type to match `ProductDetails.tsx`
+interface Product {
+  id: number
+  name: string
+  description: string
+  price: number
+  image: string
+  images: string[]
+  category: string
+  rating: number
+  reviewCount: number
+  isNew: boolean
+  features: string[]
+  specifications: {
+    dimensions: string
+    weight: string
+    material: string
+    warranty: string
+    color: string
+  }
+  stock: number
+}
 
 // Mock data - would be fetched from an API in a real application
-const products = Array(24)
+const products: Product[] = Array(24)
   .fill(0)
   .map((_, index) => ({
     id: index + 1,
     name: `Product ${index + 1}`,
-    description:
-      "Smart product with advanced features and technology. This innovative product is designed to enhance your daily life with cutting-edge technology and sleek design. Perfect for tech enthusiasts and those who value quality and functionality.",
+    description: "Smart product with advanced features and technology.",
     price: 99.99 + index * 10,
     image: `/placeholder.svg?height=600&width=600&text=Product+${index + 1}`,
     images: Array(4)
       .fill(0)
-      .map((_, i) => `/placeholder.svg?height=600&width=600&text=Image+${i + 1}`),
+      .map((_, i) => `/placeholder.svg?height=600&width=600&text=Image+${i + 1}`), // ✅ Fixed missing 'images' field
     category: ["Bags", "Wallets", "Luggage", "Accessories"][index % 4],
     rating: 4 + Math.random() * 0.9,
     reviewCount: Math.floor(Math.random() * 100) + 10,
     isNew: index % 5 === 0,
-    features: [
-      "Anti-theft technology",
-      "GPS tracking",
-      "RFID blocking",
-      "USB charging port",
-      "Water-resistant material",
-    ],
+    features: ["Anti-theft technology", "GPS tracking", "RFID blocking", "USB charging port"],
     specifications: {
       dimensions: "30 x 20 x 10 cm",
       weight: "1.2 kg",
@@ -111,6 +131,7 @@ const products = Array(24)
     stock: Math.floor(Math.random() * 50) + 1,
   }))
 
+// Function to generate metadata dynamically
 export function generateMetadata({ params }: Params) {
   const product = products.find((p) => p.id === Number.parseInt(params.id))
 
@@ -127,6 +148,7 @@ export function generateMetadata({ params }: Params) {
   }
 }
 
+// The main product page component
 export default function ProductPage({ params }: Params) {
   const productId = Number.parseInt(params.id)
   const product = products.find((p) => p.id === productId)
