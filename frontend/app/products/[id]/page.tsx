@@ -74,13 +74,6 @@ import { notFound } from "next/navigation"
 import ProductDetails from "@/components/product-details"
 import RelatedProducts from "@/components/related-products"
 
-// Define the expected type for Next.js dynamic route parameters
-interface Params {
-  params: {
-    id: string
-  }
-}
-
 // Define the Product type to match `ProductDetails.tsx`
 interface Product {
   id: number
@@ -115,7 +108,7 @@ const products: Product[] = Array(24)
     image: `/placeholder.svg?height=600&width=600&text=Product+${index + 1}`,
     images: Array(4)
       .fill(0)
-      .map((_, i) => `/placeholder.svg?height=600&width=600&text=Image+${i + 1}`), // ✅ Fixed missing 'images' field
+      .map((_, i) => `/placeholder.svg?height=600&width=600&text=Image+${i + 1}`),
     category: ["Bags", "Wallets", "Luggage", "Accessories"][index % 4],
     rating: 4 + Math.random() * 0.9,
     reviewCount: Math.floor(Math.random() * 100) + 10,
@@ -132,7 +125,7 @@ const products: Product[] = Array(24)
   }))
 
 // Function to generate metadata dynamically
-export function generateMetadata({ params }: Params) {
+export function generateMetadata({ params }: { params: { id: string } }) {
   const product = products.find((p) => p.id === Number.parseInt(params.id))
 
   if (!product) {
@@ -148,8 +141,8 @@ export function generateMetadata({ params }: Params) {
   }
 }
 
-// The main product page component
-export default function ProductPage({ params }: Params) {
+// The main product page component - modified to fix the type error
+export default function ProductPage({ params }: { params: { id: string } }) {
   const productId = Number.parseInt(params.id)
   const product = products.find((p) => p.id === productId)
 
@@ -158,7 +151,7 @@ export default function ProductPage({ params }: Params) {
   }
 
   // Get related products (same category)
-  const relatedProducts = products.filter((p) => p.category === product?.category && p.id !== product?.id).slice(0, 4)
+  const relatedProducts = products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 4)
 
   return (
     <main className="flex min-h-screen flex-col">
