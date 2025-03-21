@@ -77,7 +77,6 @@
 //   );
 // }
 
-
 import { notFound } from "next/navigation";
 import ProductDetails from "@/components/product-details";
 import RelatedProducts from "@/components/related-products";
@@ -116,14 +115,12 @@ const products = Array(24)
     stock: Math.floor(Math.random() * 50) + 1,
   }));
 
-interface ProductPageProps {
+export async function generateMetadata({
+  params,
+}: {
   params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-}
-
-export async function generateMetadata({ params }: ProductPageProps) {
+}) {
   const productId = parseInt(params.id, 10);
-
   const product = products.find((p) => p.id === productId);
 
   if (!product) {
@@ -139,9 +136,12 @@ export async function generateMetadata({ params }: ProductPageProps) {
   };
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
+export default async function ProductPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const productId = parseInt(params.id, 10);
-
   const product = products.find((p) => p.id === productId);
 
   if (!product) {
@@ -154,9 +154,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
     .slice(0, 4);
 
   return (
-    <main className="flex min-h-screen flex-col">
-      <ProductDetails product={product} />
-      <RelatedProducts products={relatedProducts} />
-    </main>
+    <>
+      {product && (
+        <>
+          <ProductDetails product={product} />
+          <RelatedProducts products={relatedProducts} />
+        </>
+      )}
+    </>
   );
 }
