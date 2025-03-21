@@ -37,9 +37,11 @@ export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const { scrollY } = useScroll()
 
-  // Parallax effect values
+  // Enhanced parallax effect values
   const y = useTransform(scrollY, [0, 500], [0, 150])
+  const scale = useTransform(scrollY, [0, 500], [1, 1.1])
   const opacity = useTransform(scrollY, [0, 300], [1, 0.3])
+  const textY = useTransform(scrollY, [0, 300], [0, -50])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -53,10 +55,11 @@ export default function HeroSection() {
       {slides.map((slide, index) => (
         <motion.div
           key={slide.id}
-          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: `url(${slide.image})`,
             y: index === currentSlide ? y : 0,
+            scale: index === currentSlide ? scale : 1,
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: index === currentSlide ? 1 : 0 }}
@@ -70,7 +73,7 @@ export default function HeroSection() {
       ))}
 
       <div className="container mx-auto px-4 h-full flex items-center relative z-10">
-        <div className="max-w-2xl">
+        <motion.div className="max-w-2xl" style={{ y: textY }}>
           {slides.map((slide, index) => (
             <motion.div
               key={slide.id}
@@ -97,7 +100,7 @@ export default function HeroSection() {
               </Link>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       <div className="absolute bottom-8 left-0 right-0 flex justify-center space-x-2 z-10">
@@ -114,3 +117,4 @@ export default function HeroSection() {
     </section>
   )
 }
+
