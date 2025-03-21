@@ -126,7 +126,7 @@ export default function Home() {
       <ParallaxSection
         title="Travel Smarter, Not Harder"
         description="Our smart luggage combines cutting-edge technology with elegant design to make your travels seamless and stress-free."
-        image="/placeholder.svg?height=800&width=1600&text=Smart+Travel"
+        image="/assets/banners-jarviz.jpg?height=800&width=1600&text=Smart+Travel"
         buttonText="Explore Smart Luggage"
         buttonLink="/categories/luggage"
       />

@@ -12,7 +12,7 @@ const slides = [
     title: "Smart Luggage for the Modern Traveler",
     description:
       "Experience the future of travel with GPS tracking, anti-theft technology, and built-in power banks",
-    image: "/placeholder.svg?height=800&width=1600",
+    image: "/assets/Jarviz_-_D.webp?height=800&width=1600",
     cta: "Shop Smart Luggage",
     link: "/products/luggage",
   },
@@ -21,7 +21,7 @@ const slides = [
     title: "Secure Wallets with Anti-Theft Technology",
     description:
       "Keep your valuables safe with our innovative smart wallets featuring RFID protection",
-    image: "/placeholder.svg?height=800&width=1600",
+    image: "/assets/Airport_-_D.webp?height=800&width=1600",
     cta: "Explore Wallets",
     link: "/products/wallets",
   },
@@ -30,7 +30,7 @@ const slides = [
     title: "Travel Accessories for the Digital Age",
     description:
       "Enhance your journey with our range of smart accessories designed for the modern traveler",
-    image: "/placeholder.svg?height=800&width=1600",
+    image: "/assets/Malaysia-Banner.webp?height=800&width=1600",
     cta: "Discover Accessories",
     link: "/products/accessories",
   },
@@ -147,8 +147,8 @@ export default function HeroSection() {
           <button
             key={index}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide
-                ? "bg-gold w-8"
-                : "bg-white/50 hover:bg-white/80"
+              ? "bg-gold w-8"
+              : "bg-white/50 hover:bg-white/80"
               }`}
             onClick={() => setCurrentSlide(index)}
             aria-label={`Go to slide ${index + 1}`}

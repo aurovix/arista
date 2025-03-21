@@ -12,6 +12,9 @@ export const metadata = {
   title: "Arista Vault | India's First Smart Luggage Brand",
   description:
     "Discover smart luggage, wallets, and accessories with anti-theft technology, GPS tracking, and built-in power banks.",
+  icons: {
+    icon: '/favicon.png',
+  },
 }
 
 export default function RootLayout({
