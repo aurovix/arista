@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { ChevronRight } from "lucide-react"
 import Link from "next/link"
 
@@ -35,6 +35,11 @@ const slides = [
 
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const { scrollY } = useScroll()
+
+  // Parallax effect values
+  const y = useTransform(scrollY, [0, 500], [0, 150])
+  const opacity = useTransform(scrollY, [0, 300], [1, 0.3])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -48,13 +53,19 @@ export default function HeroSection() {
       {slides.map((slide, index) => (
         <motion.div
           key={slide.id}
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${slide.image})` }}
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          style={{
+            backgroundImage: `url(${slide.image})`,
+            y: index === currentSlide ? y : 0,
+          }}
           initial={{ opacity: 0 }}
           animate={{ opacity: index === currentSlide ? 1 : 0 }}
           transition={{ duration: 1 }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30 dark:from-black/80 dark:to-black/50" />
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30 dark:from-black/80 dark:to-black/50"
+            style={{ opacity }}
+          />
         </motion.div>
       ))}
 
@@ -72,10 +83,14 @@ export default function HeroSection() {
               className="absolute"
               style={{ display: index === currentSlide ? "block" : "none" }}
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">{slide.title}</h1>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                <span className="bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent">
+                  {slide.title}
+                </span>
+              </h1>
               <p className="text-lg md:text-xl text-white/90 mb-8">{slide.description}</p>
               <Link href={slide.link}>
-                <Button size="lg" className="group">
+                <Button size="lg" className="group bg-gold hover:bg-gold/90 text-black">
                   {slide.cta}
                   <ChevronRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
@@ -89,9 +104,8 @@ export default function HeroSection() {
         {slides.map((_, index) => (
           <button
             key={index}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentSlide ? "bg-primary w-8" : "bg-white/50 hover:bg-white/80"
-            }`}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide ? "bg-gold w-8" : "bg-white/50 hover:bg-white/80"
+              }`}
             onClick={() => setCurrentSlide(index)}
             aria-label={`Go to slide ${index + 1}`}
           />
@@ -100,4 +114,3 @@ export default function HeroSection() {
     </section>
   )
 }
-

@@ -12,7 +12,6 @@ export const metadata = {
   title: "Arista Vault | India's First Smart Luggage Brand",
   description:
     "Discover smart luggage, wallets, and accessories with anti-theft technology, GPS tracking, and built-in power banks.",
-  generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -23,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange={false}>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange={false}>
           <Header />
           {children}
           <Footer />
@@ -33,7 +32,3 @@ export default function RootLayout({
     </html>
   )
 }
-
-
-
-import './globals.css'

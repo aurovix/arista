@@ -56,9 +56,11 @@ export default function Header() {
             <Menu className="h-6 w-6" />
           </Button>
           <Link href="/" className="flex items-center">
-            <span className="font-bold text-xl md:text-2xl bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-              ARISTA VAULT
-            </span>
+            <img
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-Jmxj4EijoPzpzcY6Eea2OYdHH4ODiz.png"
+              alt="Arista Vault"
+              className="h-8 md:h-10 mr-2"
+            />
           </Link>
         </div>
 
@@ -69,7 +71,7 @@ export default function Header() {
               href={item.href}
               className={cn(
                 "px-3 py-2 rounded-md text-sm font-medium transition-colors",
-                pathname === item.href ? "text-primary" : "text-foreground/80 hover:text-primary hover:bg-primary/10",
+                pathname === item.href ? "text-gold" : "text-foreground/80 hover:text-gold hover:bg-gold/10",
               )}
             >
               {item.name}
@@ -89,7 +91,7 @@ export default function Header() {
             <ShoppingCart className="h-5 w-5" />
             {items.length > 0 && (
               <Badge
-                className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-primary text-primary-foreground"
+                className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-gold text-black"
                 variant="default"
               >
                 {items.length}

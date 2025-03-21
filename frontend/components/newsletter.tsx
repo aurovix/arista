@@ -30,7 +30,7 @@ export default function Newsletter() {
   }
 
   return (
-    <section className="w-full bg-gradient-to-r from-primary/10 to-purple-500/10 py-16 md:py-24">
+    <section className="w-full bg-gradient-to-r from-gold/10 to-gold-light/10 py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -39,7 +39,9 @@ export default function Newsletter() {
           transition={{ duration: 0.5 }}
           className="max-w-2xl mx-auto text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Stay Updated with Arista Vault</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent">
+            Stay Updated with Arista Vault
+          </h2>
           <p className="text-muted-foreground mb-8">
             Subscribe to our newsletter for exclusive offers, new product announcements, and smart travel tips.
           </p>
@@ -50,9 +52,9 @@ export default function Newsletter() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="flex-1"
+              className="flex-1 border-gold/30 focus:border-gold"
             />
-            <Button type="submit" disabled={isSubmitting}>
+            <Button type="submit" disabled={isSubmitting} className="bg-gold hover:bg-gold/90 text-black">
               {isSubmitting ? "Subscribing..." : "Subscribe"}
             </Button>
           </form>

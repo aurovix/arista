@@ -52,24 +52,24 @@ export default function ProductCard({ product }: ProductCardProps) {
           className="object-cover w-full h-full transition-transform duration-500"
           animate={{ scale: isHovered ? 1.05 : 1 }}
         />
-        {product.isNew && <Badge className="absolute top-3 left-3 bg-primary text-primary-foreground">New</Badge>}
+        {product.isNew && <Badge className="absolute top-3 left-3 bg-gold text-black">New</Badge>}
         <Button
           variant="ghost"
           size="icon"
           className="absolute top-3 right-3 bg-background/80 backdrop-blur-sm hover:bg-background/90"
           aria-label="Add to wishlist"
         >
-          <Heart className="h-5 w-5" />
+          <Heart className="h-5 w-5 text-gold" />
         </Button>
       </div>
       <CardContent className="p-4">
         <div className="text-sm text-muted-foreground mb-1">{product.category}</div>
         <Link href={`/products/${product.id}`}>
-          <h3 className="font-semibold text-lg mb-1 hover:text-primary transition-colors">{product.name}</h3>
+          <h3 className="font-semibold text-lg mb-1 hover:text-gold transition-colors">{product.name}</h3>
         </Link>
         <p className="text-sm text-muted-foreground line-clamp-2 mb-2">{product.description}</p>
         <div className="flex items-center mb-2">
-          <div className="flex items-center text-amber-500 mr-2">
+          <div className="flex items-center text-gold mr-2">
             {Array(5)
               .fill(0)
               .map((_, i) => (
@@ -78,10 +78,13 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
           <span className="text-sm text-muted-foreground">({product.reviewCount})</span>
         </div>
-        <div className="font-bold text-lg">₹{product.price.toLocaleString()}</div>
+        <div className="font-bold text-lg text-gold">₹{product.price.toLocaleString()}</div>
       </CardContent>
       <CardFooter className="p-4 pt-0">
-        <Button className="w-full group" onClick={handleAddToCart}>
+        <Button
+          className="w-full group bg-gradient-to-r from-gold to-gold-light text-black hover:from-gold/90 hover:to-gold-light/90"
+          onClick={handleAddToCart}
+        >
           <ShoppingCart className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
           Add to Cart
         </Button>

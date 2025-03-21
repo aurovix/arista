@@ -28,7 +28,7 @@ const benefits = [
 
 export default function BenefitsBanner() {
   return (
-    <section className="w-full bg-primary/5 dark:bg-primary/10 py-8 md:py-12">
+    <section className="w-full bg-gold/5 dark:bg-gold/10 py-8 md:py-12">
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {benefits.map((benefit, index) => (
@@ -40,10 +40,10 @@ export default function BenefitsBanner() {
               transition={{ duration: 0.4, delay: index * 0.1 }}
               className="flex flex-col items-center text-center"
             >
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                <benefit.icon className="h-6 w-6 text-primary" />
+              <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center mb-4">
+                <benefit.icon className="h-6 w-6 text-gold" />
               </div>
-              <h3 className="font-semibold text-base md:text-lg mb-1">{benefit.title}</h3>
+              <h3 className="font-semibold text-base md:text-lg mb-1 text-gold">{benefit.title}</h3>
               <p className="text-sm text-muted-foreground">{benefit.description}</p>
             </motion.div>
           ))}

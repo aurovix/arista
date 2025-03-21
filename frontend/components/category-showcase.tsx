@@ -34,7 +34,9 @@ export default function CategoryShowcase() {
     <section className="w-full bg-muted/50 py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col items-center mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Shop by Category</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent">
+            Shop by Category
+          </h2>
           <p className="text-muted-foreground max-w-2xl">
             Explore our range of smart products designed for the modern lifestyle
           </p>
@@ -59,12 +61,12 @@ export default function CategoryShowcase() {
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-6 text-white">
-                <h3 className="text-2xl font-bold mb-2">{category.name}</h3>
+                <h3 className="text-2xl font-bold mb-2 text-gold">{category.name}</h3>
                 <p className="mb-4 text-white/90">{category.description}</p>
                 <Link href={category.link}>
                   <Button
                     variant="outline"
-                    className="bg-white/20 backdrop-blur-sm border-white/40 text-white hover:bg-white/30 hover:text-white w-full sm:w-auto group"
+                    className="bg-gold/20 backdrop-blur-sm border-gold/40 text-white hover:bg-gold/30 hover:text-white w-full sm:w-auto group"
                   >
                     Explore Collection
                     <ChevronRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
